@@ -1,10 +1,12 @@
 const nome = "Carlos";
-const peso = 90;
-const altura = 1.65;
+const idade = 59;
+const sexo = 'M';
+const contribuicao = 36;
 
-var IMC = peso / (altura * altura);
+var homem_pode_aposentar = sexo == 'M' && contribuicao >= 35 && idade + contribuicao >= 95;
+var mulher_pode_aposentar = sexo == 'F' && contribuicao >= 30 && idade + contribuicao >= 85;
 
-if (IMC >= 30)
-    console.log(`${nome} voce esta acima do peso`);
+if (homem_pode_aposentar | mulher_pode_aposentar)
+    console.log(`${nome} voce pode se aposentar`);
 else
-    console.log(`${nome} voce não esta acima do peso`);
+    console.log(`${nome} voce não pode se aposentar`);
