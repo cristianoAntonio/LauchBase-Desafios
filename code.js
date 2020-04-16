@@ -1,11 +1,9 @@
-const usuario = {
-    nome: "Carlos",
-    idade: 30,
-    tecnologias: [
-        {nome:"C++", especialidade: "Desktop"},
-        {nome:"Javascript", especialidade:"Web"},
-        {nome:"Python", especialidade:"de-tudo-um-pouco"}
-    ]
-}
+const usuarios = [
+    {nome:"Marcos", tecnologias:["HTML", "CSS"]},
+    {nome:"Tadeu", tecnologias:["PHP", "Laravel"]},
+    {nome:"Theomars", tecnologias:["C++", "Assembly"]}
+]
 
-console.log(`O usuário ${usuario.nome} tem ${usuario.idade} anos e usa a tecnologia ${usuario.tecnologias[1].nome} com especialidade em ${usuario.tecnologias[1].especialidade}`);
+for (var i=0;i<usuarios.length;i++){
+    console.log(`${usuarios[i].nome} trabalha com ${usuarios[i].tecnologias[0]} e ${usuarios[i].tecnologias[1]}`);
+}
