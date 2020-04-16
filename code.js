@@ -1,14 +1,11 @@
 const usuario = {
     nome: "Carlos",
-    empresa: {
-        nome: "Rocketseat",
-        cor: "Roxo",
-        foco: "Programação",
-        endereco: {
-            rua: "Rua Guilherme Gembala",
-            numero: 260
-        }
-    }
+    idade: 30,
+    tecnologias: [
+        {nome:"C++", especialidade: "Desktop"},
+        {nome:"Javascript", especialidade:"Web"},
+        {nome:"Python", especialidade:"de-tudo-um-pouco"}
+    ]
 }
 
-console.log(`A empresa ${usuario.empresa.nome} está localizada em ${usuario.empresa.endereco.rua}, ${usuario.empresa.endereco.numero}`);
+console.log(`O usuário ${usuario.nome} tem ${usuario.idade} anos e usa a tecnologia ${usuario.tecnologias[1].nome} com especialidade em ${usuario.tecnologias[1].especialidade}`);
