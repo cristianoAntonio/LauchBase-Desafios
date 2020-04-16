@@ -1,12 +1,14 @@
-const nome = "Carlos";
-const idade = 59;
-const sexo = 'M';
-const contribuicao = 36;
+const usuario = {
+    nome: "Carlos",
+    empresa: {
+        nome: "Rocketseat",
+        cor: "Roxo",
+        foco: "Programação",
+        endereco: {
+            rua: "Rua Guilherme Gembala",
+            numero: 260
+        }
+    }
+}
 
-var homem_pode_aposentar = sexo == 'M' && contribuicao >= 35 && idade + contribuicao >= 95;
-var mulher_pode_aposentar = sexo == 'F' && contribuicao >= 30 && idade + contribuicao >= 85;
-
-if (homem_pode_aposentar | mulher_pode_aposentar)
-    console.log(`${nome} voce pode se aposentar`);
-else
-    console.log(`${nome} voce não pode se aposentar`);
+console.log(`A empresa ${usuario.empresa.nome} está localizada em ${usuario.empresa.endereco.rua}, ${usuario.empresa.endereco.numero}`);
