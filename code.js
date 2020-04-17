@@ -1,39 +1,61 @@
-function calculaSaldo(receitas, despesas){
-    var receita = somaNumeros(receitas)
-    var despesa = somaNumeros(despesas)
-    return (receita - despesa).toFixed(2)
+function transacaoBancaria(transacao){
+    usuario.trasacao.push(transacao)
+    if(transacao.tipo == "credito")
+        usuario.saldo += transacao.valor
+    else
+        usuario.saldo -= transacao.valor
 }
 
-function somaNumeros(numeros){
-    var soma = 0
-    for(let i=0;i<numeros.length;i++)
-        soma += numeros[i]
-    return soma 
-}
-
-const usuarios = [
-    {
-      nome: "Salvio",
-      receitas: [115.3, 48.7, 98.3, 14.5],
-      despesas: [85.3, 13.5, 19.9]
-    },
-    {
-      nome: "Marcio",
-      receitas: [24.6, 214.3, 45.3],
-      despesas: [185.3, 12.1, 120.0]
-    },
-    {
-      nome: "Lucia",
-      receitas: [9.8, 120.3, 340.2, 45.3],
-      despesas: [450.2, 29.9]
+function maiorTransacao(tipo){
+    var valor = 0
+    for(var i=0;i<usuario.trasacao.length;i++){
+        if(tipo == usuario.trasacao[i].tipo && usuario.trasacao[i].valor > valor)
+            valor = usuario.trasacao[i].valor
     }
-  ];
-
-for (var i=0;i<usuarios.length;i++){
-    var saldo = [calculaSaldo(usuarios[i].receitas, usuarios[i].despesas), "POSITIVO"]
-    if (saldo[0]<0){
-        saldo[1] = "NEGATIVO"
-    }
-    console.log(`${usuarios[i].nome} possui saldo ${saldo[1]} de: ${saldo[0]}`);
+    return valor
 }
 
+function mediaDoValorDasTransacoes(){
+    var total = 0
+    for(var i=0; i<usuario.trasacao.length;i++){
+        total += usuario.trasacao[i].valor
+    }
+    return total/usuario.trasacao.length
+}
+
+function numeroDeTransacoes(){
+    var contagem = {credito: 0, debito:0}
+    for(var i=0; i<usuario.trasacao.length;i++){
+        if(usuario.trasacao[i].tipo == "credito"){
+            contagem.credito += 1
+        }else{
+            contagem.debito += 1
+        }
+    }
+    return contagem
+}
+
+const usuario = {
+    nome: "Perna",
+    trasacao: [],
+    saldo: 0
+}
+var transacoes = [
+    {tipo:"credito", valor: 80},
+    { tipo: "credito", valor: 120 },
+    { tipo: "debito", valor: 80 },
+    { tipo: "debito", valor: 60 },
+    {tipo: "credito", valor: 200},
+    {tipo: "credito", valor: 570}
+    ]
+
+for (var i=0;i<transacoes.length;i++)
+    transacaoBancaria(transacoes[i])
+
+const maior_transacao_credito = maiorTransacao("credito")
+const maior_transacao_debito = maiorTransacao("debito")
+const media_das_transacoes = mediaDoValorDasTransacoes()
+const numero_de_transacoes = numeroDeTransacoes()
+
+console.log(`\nSaldo atual: ${usuario.saldo}`);
+console.log(`Maior transação de crédito: ${maior_transacao_credito}\nMaior transação de débito: ${maior_transacao_debito}\nMedia das transações: ${media_das_transacoes}\nNumero de transações de crédito: ${numero_de_transacoes.credito}\nNumero de transações de débito: ${numero_de_transacoes.debito}\n`);
